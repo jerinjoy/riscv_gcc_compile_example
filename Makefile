@@ -5,14 +5,15 @@ CC = riscv64-unknown-elf-gcc
 OBJDUMP = riscv64-unknown-elf-objdump
 ASFLAGS = -nostartfiles -nostdlib -march=rv64imac -mabi=lp64
 DISASM = $(TARGET).dis
+ELF = $(TARGET).elf
 
-all: $(TARGET) $(DISASM)
+all: $(ELF) $(DISASM)
 
-$(TARGET): $(TARGET).s
-	$(CC) $(ASFLAGS) -o $(TARGET) $(TARGET).s
+$(ELF): $(TARGET).s
+	$(CC) $(ASFLAGS) -o $(ELF) $(TARGET).s
 
-$(DISASM): $(TARGET)
-	$(OBJDUMP) -d $(TARGET) > $(DISASM)
+$(DISASM): $(ELF)
+	$(OBJDUMP) -d $(ELF) > $(DISASM)
 
 clean:
-	rm -f $(TARGET) $(DISASM)
+	rm -f $(ELF) $(DISASM)
