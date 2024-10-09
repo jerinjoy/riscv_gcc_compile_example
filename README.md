@@ -3,7 +3,7 @@
 ## Install the toolchain on macOS
 
 ```shell
-brew install riscv64-unknown-elf-gcc
+brew install riscv-gnu-toolchain
 ```
 
 ## Compile the main.S
